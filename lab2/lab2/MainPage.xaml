@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="lab2.MainPage"
+             BackgroundColor="#EEEEEE">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="20"
+                             Spacing="10">
+
+            <Grid ColumnDefinitions="*,Auto,Auto"
+                  VerticalOptions="Center">
+
+                <Label Grid.Column="0"
+                       Text="Welcome to Laba2!"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="#FF47615F"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"/>
+
+                <!-- Info Button -->
+                <Frame Grid.Column="1"
+                       BackgroundColor="Transparent"
+                       BorderColor="Transparent"
+                       Padding="5"
+                       HeightRequest="40"
+                       WidthRequest="75"
+                       HasShadow="False">
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           Spacing="5">
+                        <Image WidthRequest="13"
+                               HeightRequest="13"
+                               Source="info_icon.png"/>
+                        <Label Text="Info"
+                               TextDecorations="Underline"
+                               TextColor="#004B3F"
+                               VerticalOptions="Center"
+                               FontSize="15"/>
+                    </HorizontalStackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnInfoBtnClicked"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <!-- Exit Button -->
+                <Frame Grid.Column="2"
+                       BackgroundColor="Transparent"
+                       BorderColor="Transparent"
+                       Padding="5"
+                       HeightRequest="40"
+                       WidthRequest="75"
+                       HasShadow="False">
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           Spacing="5">
+                        <Image WidthRequest="13"
+                               HeightRequest="13"
+                               Source="exit_icon.png"/>
+
+                        <Label Text="Exit"
+                               TextDecorations="Underline"
+                               TextColor="#004B3F"
+                               VerticalOptions="Center"
+                               FontSize="15"/>
+                    </HorizontalStackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnExitBtnClicked"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+
+            <!-- Bottom Row: Import Data, Filters, Export to HTML -->
+            <Grid ColumnDefinitions="Auto,Auto,*,Auto"
+                  VerticalOptions="Center">
+                <!-- Import Data Button -->
+                <Button Grid.Column="0"
+                        Text="IMPORT DATA"
+                        BackgroundColor="#004B3F"
+                        TextColor="White"
+                        Padding="10"
+                        Margin="0,0,10,0"
+                        WidthRequest="150"
+                        CornerRadius="5"
+                        Clicked="OnStartBtnClicked">
+                </Button>
+
+                <!-- Filters Button -->
+                <Button Grid.Column="1"
+                        x:Name="FilterButton"
+                        Text="FILTERS"
+                        BorderColor="#004B3F"
+                        BackgroundColor="Transparent"
+                        BorderWidth="2"
+                        TextColor="#004B3F"
+                        Padding="10"
+                        WidthRequest="150"
+                        CornerRadius="5"
+                        Clicked="OnFiltersBtnClicked">
+                </Button>
+
+                <!-- Export to HTML Button -->
+                <Button Grid.Column="3"
+                        x:Name="TransformBtn"
+                        Text="EXPORT TO HTML"
+                        BackgroundColor="#004B3F"
+                        TextColor="White"
+                        Padding="10"
+                        WidthRequest="200"
+                        CornerRadius="5"
+                        Clicked="OnTransformBtnClicked">
+                </Button>
+            </Grid>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Frame x:Name="FiltersPanel"
+                       IsVisible="False"
+                       BackgroundColor="#EEEEEE"
+                       Padding="20"
+                       CornerRadius="15"
+                       BorderColor="#DDDDDD">
+                    <VerticalStackLayout Spacing="15">
+
+                        <Frame BackgroundColor="#DDDDDD"
+                               CornerRadius="10"
+                               Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <HorizontalStackLayout Spacing="10">
+                                    <CheckBox x:Name="YearFilterCheckBox"
+                                              VerticalOptions="Center"
+                                              Color="#004B3F"
+                                              CheckedChanged="OnYearFilterCheckBoxCheckedChanged"/>
+                                    <Label Text="Choose publication year:"
+                                           FontSize="16"
+                                           VerticalOptions="Center"
+                                           TextColor="#004B3F"/>
+                                    <Label x:Name="SelectedYearLabel"
+                                           Text="1975"
+                                           FontSize="16"
+                                           VerticalOptions="Center"
+                                           TextColor="#004B3F"/>
+                                </HorizontalStackLayout>
+
+                                <Slider x:Name="YearSlider"
+                                        Minimum="1975"
+                                        Maximum="2024"
+                                        Value="1975"
+                                        IsEnabled="False"
+                                        ValueChanged="OnSliderValueChanged"
+                                        ThumbColor="#004B3F"
+                                        MinimumTrackColor="#FF0F4138"
+                                        MaximumTrackColor="#FF606D6C"/>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Grid ColumnDefinitions="*,*"
+                              RowDefinitions="Auto"
+                              Padding="10"
+                              ColumnSpacing="20">
+                            <Picker x:Name="FacultyPicker"
+                                    Title="Select Faculty"
+                                    BackgroundColor="#DDDDDD"
+                                    TextColor="#004B3F"
+                                    SelectedIndexChanged="OnFacultySelected"
+                                    Grid.Column="0"/>
+                            <Picker x:Name="DepartmentPicker"
+                                    Title="Select Department"
+                                    BackgroundColor="#DDDDDD"
+                                    TextColor="#004B3F"
+                                    SelectedIndexChanged="OnDepartmentSelected"
+                                    Grid.Column="1"/>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,*"
+                              RowDefinitions="Auto"
+                              Padding="10"
+                              ColumnSpacing="20">
+                            <Entry x:Name="TitleEntry"
+                                   Placeholder="Search by Title"
+                                   PlaceholderColor="#004B3F"
+                                   BackgroundColor="#EEEEEE"
+                                   TextColor="#FF16554A"
+                                   TextChanged="OnTitleTextChanged"
+                                   Grid.Column="0"/>
+                            <Entry x:Name="AuthorsEntry"
+                                   Placeholder="Enter authors (comma-separated)"
+                                   PlaceholderColor="#004B3F"
+                                   BackgroundColor="#EEEEEE"
+                                   TextColor="#FF16554A"
+                                   TextChanged="OnAuthorsTextChanged"
+                                   Grid.Column="1"/>
+                        </Grid>
+
+                        <HorizontalStackLayout Spacing="10">
+
+                            <Button x:Name="SearchBtn"
+                                    Text="APPLY FILTERS"
+                                    BackgroundColor="#004B3F"
+                                    TextColor="White"
+                                    Padding="10"
+                                    WidthRequest="150"
+                                    CornerRadius="5"
+                                    Clicked="OnSearchBtnClicked">
+                            </Button>
+
+                            <Label Text="CLEAR FILTERS"
+                                   TextColor="#FF647470"
+                                   FontSize="15"
+                                   Padding="10"
+                                   WidthRequest="150">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnClearFiltersBtnClicked"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+
+
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Padding="10"
+                                 Spacing="10">
+
+                <Grid ColumnDefinitions="*,*,*,*,*"
+                      RowDefinitions="Auto"
+                      BackgroundColor="#DDDDDD"
+                      Padding="5">
+                    <Label Text="Title"
+                           Grid.Column="0"
+                           FontAttributes="Bold"
+                           TextColor="#FF2F4441"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="Authors"
+                           Grid.Column="1"
+                           FontAttributes="Bold"
+                           TextColor="#FF2F4441"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="Faculty"
+                           Grid.Column="2"
+                           FontAttributes="Bold"
+                           TextColor="#FF2F4441"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="Department"
+                           Grid.Column="3"
+                           FontAttributes="Bold"
+                           TextColor="#FF2F4441"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="Year"
+                           Grid.Column="4"
+                           FontAttributes="Bold"
+                           TextColor="#FF2F4441"
+                           HorizontalTextAlignment="Center"/>
+                </Grid>
+
+                <!-- Data Collection -->
+                <CollectionView x:Name="ResultsGrid"
+                                ItemsSource="{Binding Publications}"
+                                IsVisible="False">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="*,*,*,*,*"
+                                  RowDefinitions="Auto"
+                                  Padding="5">
+                                <Border Stroke="#DDDDDD"
+                                        StrokeThickness="1"
+                                        Grid.Column="0">
+                                    <Label Text="{Binding Title}"
+                                           TextColor="#FF4B6863"
+                                           Padding="5"/>
+                                </Border>
+                                <Border Stroke="#DDDDDD"
+                                        StrokeThickness="1"
+                                        Grid.Column="1">
+                                    <Label Text="{Binding FormattedAuthors}"
+                                           TextColor="#FF4B6863"
+                                           Padding="5"/>
+                                </Border>
+                                <Border Stroke="#DDDDDD"
+                                        StrokeThickness="1"
+                                        Grid.Column="2">
+                                    <Label Text="{Binding Faculty}"
+                                           TextColor="#FF4B6863"
+                                           Padding="5"/>
+                                </Border>
+                                <Border Stroke="#DDDDDD"
+                                        StrokeThickness="1"
+                                        Grid.Column="3">
+                                    <Label Text="{Binding Department}"
+                                           TextColor="#FF4B6863"
+                                           Padding="5"/>
+                                </Border>
+                                <Border Stroke="#DDDDDD"
+                                        StrokeThickness="1"
+                                        Grid.Column="4">
+                                    <Label Text="{Binding PublishedYear}"
+                                           TextColor="#FF4B6863"
+                                           Padding="5"/>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

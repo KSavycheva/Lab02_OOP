@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Publications>
+	<Publication>
+		<Title>Semantic fields as a way of realizing linguistic pictures of the world</Title>
+		<Authors>
+			<Author>Mykola Khvylovyi</Author>
+			<Author>Ostap Vyshnya</Author>
+		</Authors>
+		<PublishedYear>1977</PublishedYear>
+		<Faculty>Phylological Faculty</Faculty>
+		<Department>UKNL</Department>
+	</Publication>
+	<Publication>
+		<Title>Equiton predicates of Infinity Kovbasa order</Title>
+		<Authors>
+			<Author>Stepan Shkilnyak</Author>
+			<Author>Yurii Koval</Author>
+		</Authors>
+		<PublishedYear>2013</PublishedYear>
+		<Faculty>FCSC</Faculty>
+		<Department>TTP</Department>
+	</Publication>
+	<Publication>
+		<Title>Karate i odoria</Title>
+		<Authors>
+			<Author>Olexand Molodsov</Author>
+		</Authors>
+		<PublishedYear>1998</PublishedYear>
+		<Faculty>FCSC</Faculty>
+		<Department>MI</Department>
+	</Publication>
+	<Publication>
+		<Title>Features of Informatics students</Title>
+		<Authors>
+			<Author>George Grynik</Author>
+		</Authors>
+		<PublishedYear>2003</PublishedYear>
+		<Faculty>Biological Faculty</Faculty>
+		<Department>HASD</Department>
+	</Publication>
+	<Publication>
+		<Title>Comments on the Military Value  of the Atom</Title>
+		<Authors>
+			<Author>Robert Oppenheimer</Author>
+		</Authors>
+		<PublishedYear>2015</PublishedYear>
+		<Faculty>FNSPE</Faculty>
+		<Department>AH</Department>
+	</Publication>
+	<Publication>
+		<Title>Adaptive algorithm for changing connections by layers using Chebyshew Inequality</Title>
+		<Authors>
+			<Author>Vitalii Vovk</Author>
+			<Author>Natalya Lisitsya</Author>
+			<Author>Olexand Molodsov</Author>
+		</Authors>
+		<PublishedYear>2023</PublishedYear>
+		<Faculty>FCSC</Faculty>
+		<Department>MI</Department>
+	</Publication>
+		<Publication>
+			<Title>Coffee influence on parfumer</Title>
+			<Authors>
+				<Author>Daniel Martin</Author>
+			</Authors>
+			<PublishedYear>2003</PublishedYear>
+			<Faculty>Phylological Faculty</Faculty>
+			<Department>LDD</Department>
+		</Publication>
+</Publications>
